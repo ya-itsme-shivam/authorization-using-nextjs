@@ -1,6 +1,5 @@
 import { connect } from "@/dbconfig/dbconfig";
 import User from "@/models/usermodel";
-import { request } from "http";
 import { NextResponse, NextRequest } from "next/server";
 
 connect();
@@ -11,7 +10,10 @@ try {
   console.log(token);
 
 
-  const user=await User.findone({verifytoken:token,verifytokenexpiry:{$gt:Date.now()}})
+  const user = await User.findOne({
+    verifytoken: token,
+    verifytokenexpiry: { $gt: Date.now() },
+  });
 
     if (!user) {
       return NextResponse.json({ error: "Invalid token" }, { status: 400 });

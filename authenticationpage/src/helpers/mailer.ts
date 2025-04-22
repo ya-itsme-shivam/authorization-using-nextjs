@@ -13,7 +13,7 @@ try {
  
  else if(emailtype==="RESET"){
       await userid.findByIdAndUpdate(userid, {
-     forgotpasswordtokken: hashedtokken,forgotpasswordtokkenexpiry:Date.now()+3600000,{new:true});
+     forgotpasswordtokken: hashedtokken,forgotpasswordtokkenexpiry:Date.now()+3600000});
  }
 
 // Looking to send emails in production? Check out our Email API/SMTP product!
@@ -31,7 +31,7 @@ const mailoptions={
     from:"cshin0420@gmail.com",
     to:email,
     subject:emailtype==='VERIFY'?"Verify your Email":"Reset ypur password",
-    html:`<p>Click <a href="${process.env.domain}/verifyemail?token=${hashedtokken}"> here</a>to ${emailtype==="VERIFY"?"Verify your Email":"Reset ypur password"}</p>`
+    html:`<p>Click <a href="${process.env.DOMAIN}/verifyemail?token=${hashedtokken}"> here</a>to ${emailtype==="VERIFY"?"Verify your Email":"Reset ypur password"} or copy and paste the link below in your browser.<br>${process.env.DOMAIN}/verifymail?token=${hashedtokken}</p>`
 }
 
 const mailrepsonse= await transport.sendMail(mailoptions)

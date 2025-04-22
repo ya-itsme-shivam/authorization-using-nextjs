@@ -1,5 +1,6 @@
 "use client";
 import axios from "axios";
+import React from "react";
 import Link from "next/link";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -12,7 +13,7 @@ export default function ProfilePage() {
     const logout = async () => {
    
     try {
-      axios.get("/api/users/logout");
+     await axios.get("/api/users/logout");
       toast.success("logout successful");
        router.push("/login");
     } 
@@ -36,18 +37,11 @@ export default function ProfilePage() {
       <p>Profile page</p>
       <hr />
       <h2 className="p-3 rounded-lg bg-purple-400">
-        {data === "nothing" ? (
-          "nothing"
-        ) : (
-          <Link href={`/profile/${data}`}>{data}</Link>
-        )}
-      </h2>
+        {data === "nothing" ? ("nothing") : (<Link href={`/profile/${data}`}>{data}</Link>)} </h2>
       <button
         onClick={logout}
-        className="bg-blue mt-4 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
-      >Logout</button>
-      <button
-        onClick={getuserdetails}
+        className="bg-blue mt-4 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Logout</button>
+      <button onClick={getuserdetails}
         className="bg-yellow-400 mt-4 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
       >Get User Details</button>
     </div>
