@@ -23,7 +23,7 @@ export default function loginPage() {
       toast.success("login success");
       router.push("/profile");
     } catch (error: any) {
-      console.log("login failed", error.message);
+      console.log("login failed successfully", error.message);
       toast.error(error.message);
     } finally {
       setloading(false);
@@ -49,7 +49,7 @@ export default function loginPage() {
       <input
         type="email"
         className="rounded-md border-2 border-gray-600 bg-gray-200 text-black px-4 py-2 my-2"
-        id="username"
+        id="email"
         value={user.email}
         onChange={(e) => setuser({ ...user, email: e.target.value })}
         placeholder="ENTER EMAIL"

@@ -30,7 +30,7 @@ export async function POST(request:NextRequest){
           { status: 400 }
         );
       }
-      console.log("user exists");
+      console.log(user);
       //create token data
       const tokendata = { id: user._id, username:user.username, email: user.email }; // Define token data
       
